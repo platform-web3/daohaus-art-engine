@@ -16,7 +16,7 @@ const layersDir = path.join(basePath, '/layers');
  ***********************/
 
 const description =
-  'This is the description of your NFT project, remember to replace this';
+  'A limited NFT collection and your ticket to an exclusive community of creators, bridging the virtual and physical realms of design in the metaverse. DAOHAUS is part of the PLATFORM metaverse.';
 const baseUri = 'ipfs://NewUriToReplace';
 
 const outputJPEG = false; // if false, the generator outputs png's
@@ -41,7 +41,7 @@ const background = {
   brightness: '80%',
 };
 
-const TOTAL_COUNT = 11;
+const TOTAL_COUNT = 111;
 
 const WoC_SHARE = 0.3;
 const Cou_SHARE = 0.25;
