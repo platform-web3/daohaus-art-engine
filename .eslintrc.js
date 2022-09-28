@@ -4,12 +4,12 @@ module.exports = {
     commonjs: true,
     es2021: true,
   },
-  extends: ["eslint:recommended", "plugin:node/recommended"],
+  extends: ['eslint:recommended', 'plugin:node/recommended'],
   parserOptions: {
     ecmaVersion: 12,
   },
   rules: {
-    "no-unused-vars": "warn",
-    indent: ["error", 2],
+    'no-unused-vars': 'warn',
+    // indent: ["error", 2],
   },
 };

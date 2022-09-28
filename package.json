@@ -1,19 +1,11 @@
 {
   "name": "nft-kitchen-sink-generator",
-  "version": "2.0.2",
   "description": "NFTChef Fork - Hard fork from HashLips Art Engine, is a tool used to create multiple different instances of artworks based on provided layers. Most config is the same as Hashlips",
+  "version": "2.0.2",
+  "author": "PLATFORM, Daniel Eugene Botha (HashLips), NFTChef",
+  "license": "MIT",
   "main": "index.js",
   "bin": "index.js",
-  "engines": {
-    "node": ">=14"
-  },
-  "pkg": {
-    "assets": [
-      "layers/**/*",
-      "node_modules/**/*",
-      "src/**/*"
-    ]
-  },
   "scripts": {
     "build": "node index.js",
     "generate": "node index.js",
@@ -27,15 +19,28 @@
     "resize": "node utils/resize.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Daniel Eugene Botha (HashLips), NFTChef",
-  "license": "MIT",
   "dependencies": {
     "canvas": "^2.8.0",
     "chalk": "^4.1.2",
     "commander": "^8.2.0",
-    "eslint-plugin-node": "^11.1.0",
+    "gif-encoder-2": "^1.0.5",
     "keccak256": "^1.0.3",
-    "sharp": "^0.30.2",
-    "gif-encoder-2": "^1.0.5"
-  }
+    "sharp": "^0.30.2"
+  },
+  "devDependencies": {
+    "eslint": ">=5.16.0",
+    "eslint-plugin-node": "^11.1.0",
+    "prettier": "2.7.1"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "pkg": {
+    "assets": [
+      "layers/**/*",
+      "node_modules/**/*",
+      "src/**/*"
+    ]
+  },
+  "packageManager": "pnpm@7.12.2"
 }
