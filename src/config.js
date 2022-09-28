@@ -1,23 +1,23 @@
-"use strict";
+'use strict';
 
-const path = require("path");
-const isLocal = typeof process.pkg === "undefined";
+const path = require('path');
+const isLocal = typeof process.pkg === 'undefined';
 const basePath = isLocal ? process.cwd() : path.dirname(process.execPath);
 
 // see src/blendMode.js for available blend modes
 // documentation: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation
-const { MODE } = require(path.join(basePath, "src/blendMode.js"));
+// const { MODE } = require(path.join(basePath, "src/blendMode.js"));
 
-const buildDir = path.join(basePath, "/build");
-const layersDir = path.join(basePath, "/layers");
+const buildDir = path.join(basePath, '/build');
+const layersDir = path.join(basePath, '/layers');
 
 /*********************
  * General Generator Options
  ***********************/
 
 const description =
-  "This is the description of your NFT project, remember to replace this";
-const baseUri = "ipfs://NewUriToReplace";
+  'This is the description of your NFT project, remember to replace this';
+const baseUri = 'ipfs://NewUriToReplace';
 
 const outputJPEG = false; // if false, the generator outputs png's
 
@@ -27,54 +27,126 @@ const outputJPEG = false; // if false, the generator outputs png's
  */
 const startIndex = 0;
 
+const WIDTH = 2048;
+const ASPECT_RATIO = 5655 / 3859;
+
 const format = {
-  width: 512,
-  height: 512,
+  width: WIDTH,
+  height: WIDTH * ASPECT_RATIO,
   smoothing: true, // set to false when up-scaling pixel art.
 };
 
 const background = {
-  generate: true,
-  brightness: "80%",
+  generate: false,
+  brightness: '80%',
 };
+
+const TOTAL_COUNT = 11;
+
+const WoC_SHARE = 0.3;
+const Cou_SHARE = 0.25;
+const DGu_SHARE = 0.2;
+const AoE_SHARE = 0.15;
+const BoU_SHARE = 0.09;
+const GCA_SHARE = 0.01;
+
+const WoC_COUNT = Math.floor(TOTAL_COUNT * WoC_SHARE); // 33
+const Cou_COUNT = Math.floor(TOTAL_COUNT * Cou_SHARE); // 27
+const DGu_COUNT = Math.floor(TOTAL_COUNT * DGu_SHARE); // 22
+const AoE_COUNT = Math.floor(TOTAL_COUNT * AoE_SHARE); // 16
+const BoU_COUNT = Math.floor(TOTAL_COUNT * BoU_SHARE); // 9
+const GCA_COUNT = Math.floor(TOTAL_COUNT * GCA_SHARE); // 1
+
+let currentCount = 0;
+const REMAINING_COUNT = Math.max(
+  0,
+  TOTAL_COUNT -
+    WoC_COUNT -
+    Cou_COUNT -
+    DGu_COUNT -
+    AoE_COUNT -
+    BoU_COUNT -
+    GCA_COUNT,
+);
+
+console.log(
+  'Generating\n',
+  `  • ${WoC_COUNT + REMAINING_COUNT} for Workers Collective\n`,
+  `  • ${Cou_COUNT} for Councillors\n`,
+  `  • ${DGu_COUNT} for Design Guild\n`,
+  `  • ${AoE_COUNT} for Association of Engineers\n`,
+  `  • ${BoU_COUNT} for Brotherhood of Umbra\n`,
+  `  • ${GCA_COUNT} for Global Corporate Alliance\n`,
+);
 
 const layerConfigurations = [
   {
-    growEditionSizeTo: 10,
-    namePrefix: "Series 2", // Use to add a name to Metadata `name:`
+    growEditionSizeTo: (currentCount += WoC_COUNT + REMAINING_COUNT),
+    namePrefix: '*DAOHAUS',
     layersOrder: [
-      { name: "Background" },
-      {
-        name: "Back Accessory",
-        // options: {
-        //   bypassDNA: true,
-        // },
-      },
-      { name: "Head" },
-      { name: "Clothes" },
-      { name: "Eyes" },
-      { name: "Hair" },
-      { name: "Head Accessory" },
-      { name: "Shirt Accessories" },
+      { name: '__Background', options: { bypassDNA: true } },
+      { name: 'Workers Collective' },
+      { name: '__Number' },
+      { name: '__Persona', trait: 'Persona' },
     ],
   },
-  // {
-  //   growEditionSizeTo: 10,
-  //   namePrefix: "Lion",
-  //   resetNameIndex: true, // this will start the Lion count at #1 instead of #6
-  //   layersOrder: [
-  //     { name: "Background" },
-  //     { name: "Hats" },
-  //     { name: "Male Hair" },
-  //   ],
-  // },
+  {
+    growEditionSizeTo: (currentCount += Cou_COUNT),
+    namePrefix: '*DAOHAUS',
+    layersOrder: [
+      { name: '__Background', options: { bypassDNA: true } },
+      { name: 'Councillors' },
+      { name: '__Number' },
+      { name: '__Persona', trait: 'Persona' },
+    ],
+  },
+  {
+    growEditionSizeTo: (currentCount += DGu_COUNT),
+    namePrefix: '*DAOHAUS',
+    layersOrder: [
+      { name: '__Background', options: { bypassDNA: true } },
+      { name: 'Design Guild' },
+      { name: '__Number' },
+      { name: '__Persona', trait: 'Persona' },
+    ],
+  },
+  {
+    growEditionSizeTo: (currentCount += AoE_COUNT),
+    namePrefix: '*DAOHAUS',
+    layersOrder: [
+      { name: '__Background', options: { bypassDNA: true } },
+      { name: 'Association of Engineers' },
+      { name: '__Number' },
+      { name: '__Persona', trait: 'Persona' },
+    ],
+  },
+  {
+    growEditionSizeTo: (currentCount += BoU_COUNT),
+    namePrefix: '*DAOHAUS',
+    layersOrder: [
+      { name: '__Background', options: { bypassDNA: true } },
+      { name: 'Brotherhood of Umbra' },
+      { name: '__Number' },
+      { name: '__Persona', trait: 'Persona' },
+    ],
+  },
+  {
+    growEditionSizeTo: (currentCount += GCA_COUNT),
+    namePrefix: '*DAOHAUS',
+    layersOrder: [
+      { name: '__Background', options: { bypassDNA: true } },
+      { name: 'Global Corporate Alliance' },
+      { name: '__Number' },
+      { name: '__Persona', trait: 'Persona' },
+    ],
+  },
 ];
 
 /**
  * Set to true for when using multiple layersOrder configuration
  * and you would like to shuffle all the artwork together
  */
-const shuffleLayerConfigurations = false;
+const shuffleLayerConfigurations = true;
 
 const debugLogs = true;
 
@@ -83,7 +155,7 @@ const debugLogs = true;
  ***********************/
 
 // if you use an empty/transparent file, set the name here.
-const emptyLayerName = "NONE";
+const emptyLayerName = 'NONE';
 
 /**
  * Incompatible items can be added to this object by a files cleanName
@@ -117,8 +189,8 @@ const forcedCombinations = {
  * clean-filename: trait-value override pairs. Wrap filenames with spaces in quotes.
  */
 const traitValueOverrides = {
-  Helmet: "Space Helmet",
-  "gold chain": "GOLDEN NECKLACE",
+  // Helmet: 'Space Helmet',
+  // 'gold chain': 'GOLDEN NECKLACE',
 };
 
 const extraMetadata = {};
@@ -151,7 +223,7 @@ const extraAttributes = () => [
 // Outputs an Keccack256 hash for the image. Required for provenance hash
 const hashImages = true;
 
-const rarityDelimiter = "#";
+const rarityDelimiter = '#';
 
 const uniqueDnaTorrance = 10000;
 
@@ -166,16 +238,16 @@ const preview = {
   thumbPerRow: 5,
   thumbWidth: 50,
   imageRatio: format.width / format.height,
-  imageName: "preview.png",
+  imageName: 'preview.png',
 };
 
 const preview_gif = {
   numberOfImages: 5,
-  order: "ASC", // ASC, DESC, MIXED
+  order: 'ASC', // ASC, DESC, MIXED
   repeat: 0,
   quality: 100,
   delay: 500,
-  imageName: "preview.gif",
+  imageName: 'preview.gif',
 };
 
 module.exports = {
