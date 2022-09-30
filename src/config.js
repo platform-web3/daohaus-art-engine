@@ -41,7 +41,7 @@ const background = {
   brightness: '80%',
 };
 
-const TOTAL_COUNT = 111;
+const TOTAL_COUNT = 333;
 
 const WoC_SHARE = 0.3;
 const Cou_SHARE = 0.25;
